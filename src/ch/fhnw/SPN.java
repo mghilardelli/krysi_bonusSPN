@@ -9,8 +9,19 @@ public class SPN {
 
   public SPN(String key, String chiffre){
     this.key= key;
-    this.chiffre=chiffre;g
+    this.chiffre=chiffre;
+  }
 
+  private String sBox(String x){
+      return new String("");
+  }
+
+  private String bitPermutation(String x){
+      return new String("");
+  }
+
+  private String xor(String x, String y){
+      return new String("");
   }
 
 }
