@@ -9,12 +9,5 @@ public class Appstarter {
 
     SPN spn = new SPN(key, chiffre);
 
-
     }
-
-
-
-
-
-
 }
