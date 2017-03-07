@@ -18,8 +18,8 @@ public class SPN {
       if(!(x.length()%4==0)){
           throw new IllegalArgumentException("Input must be dividable by 4");
       }
-      StringBuilder out = new StringBuilder();
 
+      StringBuilder out = new StringBuilder();
       HashMap<Integer, Integer> thebox = new HashMap<Integer, Integer>(){{
         put(0,14);
         put(1,4);
@@ -48,10 +48,18 @@ public class SPN {
 
 
   private String bitPermutation(String x) {
-      //TODO: implement bitpermutation
+      if (x.length() != 16) {
+          throw new IllegalArgumentException("Length does not match");
+      }
 
-
-    return new String("");
+      StringBuilder out = new StringBuilder("0000000000000000");
+      int[] a = {0,4,8,12,1,5,9,13,2,6,10,14,3,7,11,15};
+      for (int i = 0; i < 16; i++) {
+          if(x.charAt(i) == '1'){
+            out.setCharAt(a[i], (char) '1');
+          }
+      }
+    return String.valueOf(out);
   }
 
 
@@ -60,6 +68,7 @@ public class SPN {
     if (x.length() != y.length()) {
       throw new IllegalArgumentException("Length does not match");
     }
+
     String temp = "";
     for (int i = 0; i < x.length(); i++) {
       if (x.charAt(i) == y.charAt(i) && y.charAt(i) == '0' || x.charAt(i) == y.charAt(i) && y.charAt(i) == '1') {
