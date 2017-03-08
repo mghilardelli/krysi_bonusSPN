@@ -1,18 +1,59 @@
 package ch.fhnw;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
  * Created by pwg on 07.03.17.
+ *
+ * Definitionen
+ *  r = 4           -> Anzahl Runden
+ *  n = 4           ->
+ *  m = 4           ->
+ *  m*n = 16        -> länge der eingabe "Block"
+ *  SBox            -> done
+ *  BitPermutation  -> done
+ *  s = 32          -> Schlüssel gesamtgrösse
+ *  K(k,i)          -> Rundenschlüssel 16 ab position 4i
+ *  yRAND           -> Die Randomnummer (RAND oder y-1)
+ *
  */
+
 public class SPN {
   String key;
   String chiffre;
+  String yRAND;
+  String[] y;  // beginnt erst bei chiffre zeichen 15 also ohne y-1(yRAND)
+  String[] z;  // nach Folie 1.52 im Skript, output aus generateZ()
+  String[] x;  // wollen wir am schluss
+
 
   public SPN(String key, String chiffre) {
     this.key = key;
     this.chiffre = chiffre;
+    yRAND = chiffre.substring(0,15);
+    y = chiffre.substring(16,chiffre.length()).split("(?<=\\G.{16})");
+    generateZ();
   }
+
+  private void generateZ(){
+//  y.length() mal müssen sie schritte auf Folie 1.29 durchgegangen werden:
+//  yRAND muss pro z um eins erhöht werden!
+//    TODO: initialer Weissschritt x = x (+) K(k,0)
+//    TODO: i=1 bis r-1 mal:
+//            1. Sbox
+//            2. bitpermutation
+//            3. rundenschlüsseladdition x = x (+) K(k,i)
+//    TODO: Abschliessende verkürzte Runde
+//            1. Sbox
+//            2. rundenschlüsseladdition x = x (+) K(k,i)
+  }
+
+  private String addOne(String x){
+//      TODO: eins hinzuzählen
+      return new String("");
+  }
+
 
   private String sBox(String x) {
       if(!(x.length()%4==0)){
